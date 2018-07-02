@@ -1,0 +1,15 @@
+{
+  "name": "@doomrooms/protocol-tcp-json",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Lieuwe Rooijakkers <lieuwerooijakkers@gmail.com> (http://www.lieuwe.xyz/)",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "eventemitter3": "^3.1.0"
+  }
+}

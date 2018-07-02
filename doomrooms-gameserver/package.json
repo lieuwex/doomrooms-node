@@ -1,0 +1,16 @@
+{
+  "name": "@doomrooms/gameserver",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Lieuwe Rooijakkers <lieuwerooijakkers@gmail.com> (http://www.lieuwe.xyz/)",
+  "license": "ISC",
+  "dependencies": {
+    "@doomrooms/common": "0.0.3",
+    "eventemitter3": "^3.1.0"
+  }
+}
