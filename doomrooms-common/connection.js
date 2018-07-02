@@ -20,8 +20,6 @@ class Connection extends EventEmitter {
 		this.conn.on('message', msg => {
 			this.currentId = Math.max(this.currentId, msg.id);
 
-			console.log(msg);
-
 			if (msg.method != null) {
 				this.emit('message', msg);
 			} else if (typeof this.replyHandlers[msg.id] === 'function') {
