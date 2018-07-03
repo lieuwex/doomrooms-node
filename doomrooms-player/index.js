@@ -1,5 +1,10 @@
 const EventEmitter = require('eventemitter3');
-const { Connection, PipeConnection, Room } = require('@doomrooms/common');
+const {
+	Connection,
+	PipeConnection,
+	Room,
+	Player: CommonPlayer,
+} = require('@doomrooms/common');
 
 class Player extends EventEmitter {
 	constructor(options) {
@@ -36,16 +41,14 @@ class Player extends EventEmitter {
 	}
 
 	async login(username, password) {
-		this.nickname = username;
-
 		const player = await this.conn.send('login', username, password);
-		// TODO
+		this.nickname = username;
+		return CommonPlayer.fromObject(player);
 	}
 	async makePlayer(username, password) {
-		this.nickname = username;
-
 		const player = await this.conn.send('make-player', username, password);
-		// TODO
+		this.nickname = username;
+		return CommonPlayer.fromObject(player);
 	}
 
 	async setGame(id) {
