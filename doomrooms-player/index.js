@@ -61,22 +61,19 @@ class Player extends EventEmitter {
 	}
 
 	async tags(tags) {
-		if (tags == null) {
-			return await this.conn.send('get-tags');
-		}
-
-		return await this.conn.send('set-tags', tags);
+		return tags == null ?
+			await this.conn.send('get-tags') :
+			await this.conn.send('set-tags', tags);
 	}
 
 	async openPipe() {
 		const privateId = await this.conn.send('open-pipe');
-		const pipeConn = new PipeConnection({
+		return new PipeConnection({
 			host: this.options.host,
 			port: this.options.pipePort,
 			protocol: this.options.protocol,
 			id: privateId,
 		});
-		return pipeConn;
 	}
 
 	async currentRoom() {
@@ -96,21 +93,16 @@ class Player extends EventEmitter {
 		return room;
 	}
 	async getRoom(id) {
-		const room = await this.conn.send('get-room', id);
-		return Room.fromObject(room);
+		return Room.fromObject(await this.conn.send('get-room', id));
 	}
 	async searchRooms(query) {
-		const room = await this.conn.send('search-rooms', query);
-		return Room.fromObject(room);
+		return Room.fromObject(await this.conn.send('search-rooms', query));
 	}
 
 	async sendRoomChat(message, filter) {
-		if (filter == null) {
-			await this.conn.send('send-room-chat', message);
-			return;
-		}
-
-		await this.conn.send('send-filtered-room-chat', message, filter);
+		filter == null ?
+			await this.conn.send('send-room-chat', message) :
+			await this.conn.send('send-filtered-room-chat', message, filter);
 	}
 }
 
