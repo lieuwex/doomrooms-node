@@ -83,14 +83,14 @@ class Player extends EventEmitter {
 	async makeRoom(name, hidden = false, options = {}) {
 		const room = await this.conn.send('make-room', name, hidden, options);
 		this.currentRoomId = room.id;
-		return room;
+		return Room.fromObject(room);
 	}
 	async joinRoom(id, password) {
 		const room = password != null ?
 			await this.conn.send('join-room', id, password) :
 			await this.conn.send('join-room', id);
 		this.currentRoomId = id;
-		return room;
+		return Room.fromObject(room);
 	}
 	async getRoom(id) {
 		return Room.fromObject(await this.conn.send('get-room', id));
